@@ -150,6 +150,9 @@ const AdminDashboard = ({ user }) => {
           pendingRequests: requestsArray.filter(r => !r.status || r.status === 'pending').length,
           totalTips: requestsArray.reduce((sum, r) => sum + (parseInt(r.tipAmount) || 0), 0)
         });
+      } else {
+        setRequests([]);
+        setStats({ totalRequests: 0, pendingRequests: 0, totalTips: 0 });
       }
     });
 
