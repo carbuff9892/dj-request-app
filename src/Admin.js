@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminDashboard from './components/AdminDashboard';
 
-const ADMIN_PASSWORD = "Hyundai3"; // Password for admin access
+const ADMIN_PASSWORD = "Hyundai3!"; // Password for admin access
 
 export default function Admin() {
   const [authenticated, setAuthenticated] = useState(false);
