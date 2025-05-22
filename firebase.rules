@@ -1,0 +1,74 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": true,
+    "djStatus": {
+      ".read": true,
+      ".write": true
+    },
+    "djMessage": {
+      ".read": true,
+      ".write": true
+    },
+    "songs": {
+      ".read": true,
+      ".write": true,
+      "$songId": {
+        ".validate": "newData.hasChildren(['title', 'artist', 'requestedBy', 'timestamp', 'rating', 'status', 'imageUrl'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "artist": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "requestedBy": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        "timestamp": {
+          ".validate": "newData.isNumber()"
+        },
+        "rating": {
+          ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5"
+        },
+        "status": {
+          ".validate": "newData.isString() && (newData.val() === 'pending' || newData.val() === 'played' || newData.val() === 'blacklisted' || newData.val() === 'whitelisted')"
+        },
+        "imageUrl": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        }
+      }
+    },
+    "ratings": {
+      ".read": true,
+      ".write": true,
+      "$songId": {
+        "$ratingId": {
+          ".validate": "newData.hasChildren(['songId', 'rating', 'timestamp'])",
+          "songId": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "rating": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5"
+          },
+          "timestamp": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      }
+    },
+    "blacklist": {
+      ".read": true,
+      ".write": true,
+      "$songId": {
+        ".validate": "newData.isString() && newData.val().length > 0"
+      }
+    },
+    "whitelist": {
+      ".read": true,
+      ".write": true,
+      "$songId": {
+        ".validate": "newData.isString() && newData.val().length > 0"
+      }
+    }
+  }
+} 

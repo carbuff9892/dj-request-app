@@ -1,30 +1,40 @@
-.request-container {
-  max-width: 800px;
+.request-form-container, .request-form, .recent-requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 32px auto;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.App {
+  align-items: center;
+  justify-content: center;
+}
+
+.request-form-container {
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
 }
 
-.form-section {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-section h2 {
-  margin: 0 0 15px 0;
-  color: #333;
-  font-size: 24px;
-}
-
-.instructions {
-  color: #666;
-  margin-bottom: 20px;
-  font-size: 14px;
-  line-height: 1.5;
+.request-form {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form-group {
@@ -34,117 +44,312 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #444;
+  color: var(--text);
   font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea,
+.form-group select {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.2s;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(255, 51, 102, 0.2);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-button {
-  background: #4a90e2;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-button {
   width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-button:hover {
-  background: #357abd;
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
 }
 
-button:disabled {
-  background: #ccc;
+.submit-button:disabled {
+  opacity: 0.7;
   cursor: not-allowed;
+  transform: none;
 }
 
-button.submitting {
-  background: #357abd;
-  opacity: 0.8;
+.submit-status {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
 }
 
-.error-message {
-  background: #fee;
-  color: #c00;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 14px;
+.submit-status.success {
+  background: rgba(0, 255, 157, 0.1);
+  border: 1px solid var(--success);
+  color: var(--success);
 }
 
-.success-message {
-  background: #e6ffe6;
-  color: #0a0;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 14px;
+.submit-status.error {
+  background: rgba(255, 51, 102, 0.1);
+  border: 1px solid var(--error);
+  color: var(--error);
 }
 
-.recent-requests {
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.payment-link {
+  display: block;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.recent-requests h3 {
-  margin: 0 0 15px 0;
-  color: #333;
-  font-size: 20px;
+.payment-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
 }
 
-.recent-requests ul {
+.payment-options {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.payment-options h4 {
+  margin-bottom: 15px;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.payment-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.payment-button.venmo {
+  background: #008CFF;
+  color: white;
+}
+
+.payment-button.cashapp {
+  background: #00D632;
+  color: white;
+}
+
+.payment-button.zelle {
+  background: #6D1ED4;
+  color: white;
+}
+
+.payment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 51, 102, 0.2);
+}
+
+.payment-button.selected {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .request-form-container {
+    padding: 10px;
+  }
+  
+  .request-form {
+    padding: 20px;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 10px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Add mobile responsiveness for new queue and leaderboard sections */
+@media (max-width: 600px) {
+  .form-group, .recent-requests, .top-voted-requests {
+    padding: 12px !important;
+    font-size: 1rem !important;
+  }
+  .App-header h1 {
+    font-size: 2.2rem !important;
+  }
+  .App-footer {
+    font-size: 0.8rem !important;
+  }
+  .vote-row button {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.1rem !important;
+  }
+}
+
+.top-voted-requests {
+  background: #232336;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #181824;
+  color: #f3f3f3;
+  margin: 32px 0;
+  padding: 24px;
+}
+
+.top-voted-requests h4 {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.top-voted-requests ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.recent-requests li {
-  padding: 15px;
-  border-bottom: 1px solid #eee;
+.top-voted-requests li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
 
-.recent-requests li:last-child {
-  border-bottom: none;
+.top-voted-requests span {
+  margin-left: 8px;
 }
 
-.recent-requests strong {
-  display: block;
-  color: #333;
-  margin-bottom: 5px;
+/* Confetti animation */
+.confetti {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.confetti.show {
+  opacity: 1;
+  animation: confetti-burst 1.5s ease;
+}
+@keyframes confetti-burst {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-.request-message {
-  color: #666;
-  margin: 5px 0;
-  font-size: 14px;
+/* Tip leaderboard styles */
+.top-tippers {
+  background: #232336;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #181824;
+  color: #ffd700;
+  margin: 32px 0;
+  padding: 24px;
+}
+.top-tippers h4 {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.top-tippers ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.top-tippers li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+.top-tippers span {
+  margin-left: 8px;
 }
 
-.recent-requests small {
-  color: #999;
-  font-size: 12px;
-}
-
-@media (max-width: 768px) {
-  .request-container {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+  .top-tippers {
+    padding: 12px !important;
+    font-size: 1rem !important;
   }
+}
+
+/* Tip message field */
+input[placeholder*="Add a message with your tip"] {
+  margin-top: 8px;
+  background: rgba(0,255,247,0.05);
+  border: 1.5px solid #00fff7;
+  color: #00fff7;
 }
